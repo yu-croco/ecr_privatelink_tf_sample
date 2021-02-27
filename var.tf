@@ -4,6 +4,6 @@ locals {
 }
 
 variable "region" {
-  type  = string
+  type    = string
   default = "ap-northeast-1"
 }
