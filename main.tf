@@ -107,14 +107,14 @@ resource "aws_security_group" "vpc_endpoint" {
 // VPC Endpoint
 resource "aws_vpc_endpoint" "s3" {
   vpc_id       = aws_vpc.main.id
-  service_name = "com.amazonaws.${local.region}.s3"
+  service_name = "com.amazonaws.${var.region}.s3"
   vpc_endpoint_type = "Gateway"
   route_table_ids = [aws_route_table.private.id]
 }
 
 resource "aws_vpc_endpoint" "ecr_dkr" {
   vpc_id       = aws_vpc.main.id
-  service_name = "com.amazonaws.${local.region}.ecr.dkr"
+  service_name = "com.amazonaws.${var.region}.ecr.dkr"
   vpc_endpoint_type = "Interface"
   private_dns_enabled = true
   security_group_ids = [aws_security_group.vpc_endpoint.id]
@@ -124,7 +124,7 @@ resource "aws_vpc_endpoint" "ecr_dkr" {
 // EC2タイプの場合に必要
 resource "aws_vpc_endpoint" "ecr_api" {
   vpc_id       = aws_vpc.main.id
-  service_name = "com.amazonaws.${local.region}.ecr.api"
+  service_name = "com.amazonaws.${var.region}.ecr.api"
   vpc_endpoint_type = "Interface"
   private_dns_enabled = true
   security_group_ids = [aws_security_group.vpc_endpoint.id]
@@ -136,7 +136,7 @@ resource "aws_vpc_endpoint" "ecr_api" {
 // Fargateの場合に必要
 resource "aws_vpc_endpoint" "logs" {
   vpc_id       = aws_vpc.main.id
-  service_name = "com.amazonaws.${local.region}.logs"
+  service_name = "com.amazonaws.${var.region}.logs"
   vpc_endpoint_type = "Interface"
   private_dns_enabled = true
   security_group_ids = [aws_security_group.vpc_endpoint.id]
@@ -149,7 +149,7 @@ resource "aws_vpc_endpoint" "logs" {
 // see: https://aws.amazon.com/jp/premiumsupport/knowledge-center/ec2-systems-manager-vpc-endpoints/
 resource "aws_vpc_endpoint" "ssm" {
   vpc_id       = aws_vpc.main.id
-  service_name = "com.amazonaws.${local.region}.ssm"
+  service_name = "com.amazonaws.${var.region}.ssm"
   vpc_endpoint_type = "Interface"
   private_dns_enabled = true
   security_group_ids = [aws_security_group.vpc_endpoint.id]
