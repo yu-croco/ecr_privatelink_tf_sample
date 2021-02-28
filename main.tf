@@ -128,8 +128,6 @@ resource "aws_vpc_endpoint" "ecr_api" {
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
   security_group_ids  = [aws_security_group.vpc_endpoint.id]
-  // subnet_idsは以下を指定しても動く
-  // aws_subnet.private_1a_app1.id, aws_subnet.private_1c_app1.id, aws_subnet.private_1a_app2.id, aws_subnet.private_1c_app2.id
   subnet_ids = [aws_subnet.private_1a_vpc_endpoint.id, aws_subnet.private_1c_vpc_endpoint.id]
 }
 
@@ -140,8 +138,6 @@ resource "aws_vpc_endpoint" "logs" {
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
   security_group_ids  = [aws_security_group.vpc_endpoint.id]
-  // subnet_idsは以下を指定しても動く
-  // aws_subnet.private_1a_app1.id, aws_subnet.private_1c_app1.id, aws_subnet.private_1a_app2.id, aws_subnet.private_1c_app2.id
   subnet_ids = [aws_subnet.private_1a_vpc_endpoint.id, aws_subnet.private_1c_vpc_endpoint.id]
 }
 
@@ -153,7 +149,5 @@ resource "aws_vpc_endpoint" "ssm" {
   vpc_endpoint_type   = "Interface"
   private_dns_enabled = true
   security_group_ids  = [aws_security_group.vpc_endpoint.id]
-  // subnet_idsは以下を指定しても動く
-  // aws_subnet.private_1a_app1.id, aws_subnet.private_1c_app1.id, aws_subnet.private_1a_app2.id, aws_subnet.private_1c_app2.id
   subnet_ids = [aws_subnet.private_1a_vpc_endpoint.id, aws_subnet.private_1c_vpc_endpoint.id]
 }
